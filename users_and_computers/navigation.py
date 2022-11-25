@@ -22,12 +22,12 @@ risk_rel_buttons = [
 menu_items = (
     PluginMenuItem(
         link='plugins:users_and_computers:risk_list',
-        link_text='Risks',
+        link_text='AD Users',
         buttons=risk_buttons
     ),
     PluginMenuItem(
         link='plugins:users_and_computers:riskrelation_list',
-        link_text='Risk Relations',
+        link_text='Workstations',
         buttons=risk_rel_buttons
     ),
 )

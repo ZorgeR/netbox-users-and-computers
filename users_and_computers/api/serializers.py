@@ -9,7 +9,7 @@ from utilities.api import get_serializer_for_model
 
 class NestedRiskSerializer(WritableNestedSerializer):
     url = serializers.HyperlinkedIdentityField(
-        view_name='plugins-api:risks-api:risk-detail'
+        view_name='plugins-api:users_and_computers-api:risk-detail'
     )
 
     class Meta:
@@ -19,7 +19,7 @@ class NestedRiskSerializer(WritableNestedSerializer):
 
 class RiskSerializer(NetBoxModelSerializer):
     url = serializers.HyperlinkedIdentityField(
-        view_name='plugins-api:risks-api:risk-detail'
+        view_name='plugins-api:users_and_computers-api:risk-detail'
     )
 
     class Meta:
@@ -29,7 +29,7 @@ class RiskSerializer(NetBoxModelSerializer):
 
 class NestedRiskRelationSerializer(WritableNestedSerializer):
     url = serializers.HyperlinkedIdentityField(
-        view_name='plugins-api:risks-api:riskrelation-detail'
+        view_name='plugins-api:users_and_computers-api:riskrelation-detail'
     )
 
     class Meta:
@@ -39,7 +39,7 @@ class NestedRiskRelationSerializer(WritableNestedSerializer):
 
 class RiskRelationSerializer(NetBoxModelSerializer):
     url = serializers.HyperlinkedIdentityField(
-        view_name='plugins-api:risks-api:riskrelation-detail'
+        view_name='plugins-api:users_and_computers-api:riskrelation-detail'
     )
 
     class Meta:
@@ -49,7 +49,7 @@ class RiskRelationSerializer(NetBoxModelSerializer):
 
 class NestedRiskAssignmentSerializer(WritableNestedSerializer):
     url = serializers.HyperlinkedIdentityField(
-        view_name='plugins-api:risks-api:riskassignment-detail')
+        view_name='plugins-api:users_and_computers-api:riskassignment-detail')
     risk = NestedRiskSerializer()
     relation = NestedRiskRelationSerializer
 
@@ -60,7 +60,7 @@ class NestedRiskAssignmentSerializer(WritableNestedSerializer):
 
 class RiskAssignmentSerializer(NetBoxModelSerializer):
     url = serializers.HyperlinkedIdentityField(
-        view_name='plugins-api:risks-api:riskassignment-detail')
+        view_name='plugins-api:users_and_computers-api:riskassignment-detail')
     content_type = ContentTypeField(
         queryset=ContentType.objects.all()
     )

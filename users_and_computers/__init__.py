@@ -4,7 +4,7 @@ class NetBoxRisksConfig(PluginConfig):
     name = 'users_and_computers'
     verbose_name = 'Users and Computers'
     description = 'Manage AD Users and Workstations'
-    version = '0.1.1'
+    version = '0.2.0'
     base_url = 'users_and_computers'
     author = 'Artur Shamsiev'
     author_email = 'me@z-lab.me'

@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 
 class RiskView(generic.ObjectView):
     queryset = models.Risk.objects.all()
+    template_name = 'users_and_computers/risk.html'
 
 
 class RiskListView(generic.ObjectListView):
@@ -52,7 +53,7 @@ class RiskRelationDeleteView(generic.ObjectDeleteView):
 class RiskAssignmentEditView(generic.ObjectEditView):
     queryset = models.RiskAssignment.objects.all()
     form = forms.RiskAssignmentForm
-    template_name = 'risks/riskassignment_edit.html'
+    template_name = 'users_and_computers/riskassignment_edit.html'
 
     def alter_object(self, instance, request, args, kwargs):
         if not instance.pk:

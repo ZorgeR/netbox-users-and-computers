@@ -8,13 +8,72 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
-from virtualization.models import VirtualMachine
 
 
 class Risk(NetBoxModel):
     name = models.CharField(
         max_length=250,
-        unique=True
+        unique=False
+    )
+
+    firstname = models.CharField(
+        max_length=250,
+        blank=True,
+    )
+    lastname = models.CharField(
+        max_length=250,
+        blank=True,
+    )
+
+    ENABLED = 'enabled'
+    DISABLED = 'disabled'
+    DELETED = 'deleted'
+    NEEDACTION = 'need action'
+
+    CHOICES = (
+        (ENABLED, ENABLED),
+        (DISABLED, DISABLED),
+        (DELETED, DELETED),
+        (NEEDACTION, NEEDACTION),
+    )
+
+    status = models.CharField(
+        max_length=250,
+        unique=False,
+        choices=CHOICES,
+        default=ENABLED
+    )
+
+    sAMAccountName = models.CharField(
+        max_length=250,
+        unique=True,
+        blank=False,
+    )
+
+    ad_guid = models.CharField(
+        max_length=250,
+        blank=True,
+    )
+
+    vpnIPaddress = models.CharField(
+        max_length=250,
+        blank=True,
+    )
+    ad_description = models.CharField(
+        max_length=250,
+        blank=True,
+    )
+    position = models.CharField(
+        max_length=250,
+        blank=True,
+    )
+    department = models.CharField(
+        max_length=250,
+        blank=True,
+    )
+    comment = models.CharField(
+        max_length=250,
+        blank=True,
     )
 
     description = models.CharField(
@@ -90,9 +149,9 @@ class RiskAssignment(WebhooksMixin, ChangeLoggedModel):
         return reverse('plugins:users_and_computers:risk', args=[self.risk.pk])
 
 
-@receiver(post_delete, sender=VirtualMachine, dispatch_uid='del_risk_assignment')
+@receiver(post_delete, sender=Risk, dispatch_uid='del_risk_assignment')
 def del_assignments(sender, **kwargs):
-    content_type_id = ContentType.objects.get(model='virtualmachine').id
+    content_type_id = ContentType.objects.get(model='risk').id
     instance_id = kwargs.get('instance').id
     objs = RiskAssignment.objects.filter(
         object_id=instance_id, content_type=content_type_id)

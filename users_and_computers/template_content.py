@@ -4,7 +4,7 @@ from users_and_computers.models import RiskAssignment
 
 
 class RiskVMPanel(PluginTemplateExtension):
-    model = 'virtualization.virtualmachine'
+    model = 'users_and_computers.risk'
 
     def right_page(self):
         vm = self.context['object']
@@ -19,7 +19,7 @@ class RiskVMPanel(PluginTemplateExtension):
                 'rel': r.relation.name
             })
 
-        return self.render('risks/risk_panel.html', extra_context={
+        return self.render('users_and_computers/risk_panel.html', extra_context={
             'risks': risks
         })
 
@@ -40,7 +40,7 @@ class RiskDevicePanel(PluginTemplateExtension):
                 'rel': r.relation.name
             })
 
-        return self.render('risks/risk_panel.html', extra_context={
+        return self.render('users_and_computers/risk_panel.html', extra_context={
             'risks': risks
         })
 

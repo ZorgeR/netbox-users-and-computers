@@ -9,7 +9,14 @@ from django import forms
 class RiskForm(NetBoxModelForm):
     class Meta:
         model = Risk
-        fields = ('name', 'description', 'comments')
+        fields = ('name',
+                  'sAMAccountName',
+                  'status',
+                  'firstname',
+                  'lastname', 'ad_guid', 'ad_description', 'position', 'department', 'comment',
+                  'vpnIPaddress',
+                  'description',
+                  'comments')
 
 
 class RiskRelationForm(NetBoxModelForm):

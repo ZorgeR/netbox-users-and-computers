@@ -1,7 +1,7 @@
 from netbox.api.routers import NetBoxRouter
 from . import views
 
-app_name = 'risks'
+app_name = 'users_and_computers'
 
 router = NetBoxRouter()
 router.register('risks', views.RiskListViewSet)
